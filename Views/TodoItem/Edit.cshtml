@@ -1,0 +1,44 @@
+﻿@model TodoItem
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form method="post">
+                <div class="border p-3 mt-4">
+                    <div class="row pb-2">
+                        <h2 class="text-primary">Create To-Do Item</h2>
+                        <hr />
+                    </div>
+                    <div asp-validation-summary="All"></div>
+                    <div class="mb-3">
+                        <label asp-for="Title"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="DifficultyLevel" class="form-label"></label>
+                        <input asp-for="DifficultyLevel" type="range" class="form-range form-control" min="0" max="100">
+                        <span asp-validation-for="DifficultyLevel" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="DueDate"></label>
+                        <input asp-for="DueDate" class="form-control" />
+                        <span asp-validation-for="DueDate" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-check-input" type="checkbox" asp-for="IsComplete">
+                        <label class="form-check-label" asp-for="IsComplete"></label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 6vw">Update</button>
+                    <a asp-controller="TodoItem" asp-action="Index" class="btn btn-secondary">Back to Index</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    }

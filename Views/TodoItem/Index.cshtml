@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TodoItem>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row p-3 mt-2">
+        <div class="col-6">
+            <h1 class="text-primary">Index Todo Items</h1>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="TodoItem" asp-action="Create" class="btn btn-primary">New To-Do Item</a>
+        </div>
+    </div>
+</div>
+
+
+
+<table class="table table-striped" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Is Complete</th>
+            <th>Due At</th>
+            <th>Difficulty Level</th>
+            <th>Created At</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var itemObj in Model)
+        {
+            <tr>
+                <td>@itemObj.Title</td>
+                <td class="isCompleteText">@( itemObj.IsComplete ? "Yes" : "No" )</td>
+                <td>@itemObj.DueDate</td>
+                <td>@itemObj.DifficultyLevel</td>
+                <td>@itemObj.CreatedDate</td>
+                <td width="10%">
+                    <a class="btn btn-success todoList-done" data-item-id="@itemObj.Id">Done ✅</a>
+                </td>
+                <td width="15%">
+                    <a class="btn btn-primary todoList-edit" asp-controller="TodoItem" asp-action="Edit" asp-route-id="@itemObj.Id">Edit 📝</a>
+                </td>
+                <td width="10%">
+                    <a class="btn btn-danger todoList-delete" data-item-id="@itemObj.Id" asp-controller="TodoItem" asp-action="Delete" asp-route-id="@itemObj.Id" >Delete ☠️</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>   
